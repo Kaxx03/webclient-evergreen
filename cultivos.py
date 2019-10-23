@@ -6,7 +6,7 @@ productos_list = ['Leche','Cacao', 'Carne', 'Flores','Hortalizas']
 
 @app.route('/listCultivo', methods = ['GET'])
 def listCultivo():
-    cultivos_list = requests.get('/tipoCultivos').json()
+    cultivos_list = requests.get('https://api-evergreen-982.azurewebsites.net/tipoCultivos').json()
     return render_template('listarCultivo.html', cultivos = cultivos_list)
 
 @app.route('/ingreCultivo', methods = ['GET'])
@@ -19,5 +19,5 @@ def saveCultivo():
    cultivo['latitud'] = int(cultivo['latitud'])
    cultivo['longitud'] = int(cultivo['longitud'])
    cultivo['area'] = int(cultivo['area'])
-   requests.post('/tipoCultivos', json=cultivo)
+   requests.post('https://api-evergreen-982.azurewebsites.net/tipoCultivos', json=cultivo)
    return(listCultivo())
